@@ -1,8 +1,8 @@
 from telegram.ext import Updater, MessageHandler,Filters
 from Adafruit_IO import Client
-
-aio = Client('nostalgicboy22', 'aio_ntos79EszwrtZ2WXeo5RSfPJUb2F')
-
+import os
+aio = Client('nostalgicboy22',os.getenv('nostalgicboy22'))
+             
 def demo1(bot,update):
   chat_id = bot.message.chat_id
   path = 'https://image.shutterstock.com/image-vector/ok-hand-lettering-handmade-calligraphy-260nw-669965602.jpg'
@@ -56,7 +56,7 @@ def main(bot,update):
     demo5(bot,update)
   else:
     bot.message.reply_text('Invalid Text')
-BOT_TOKEN = '1771878933:AAFkT5kB7_dqu7v80MX9l4e4hzlDYar33k4'
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 u = Updater(BOT_TOKEN,use_context=True)
 dp = u.dispatcher
 dp.add_handler(MessageHandler(Filters.text,main))
